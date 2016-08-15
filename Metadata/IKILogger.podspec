@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
-  s.platforms = { :ios => "9.0"}
-  # s.platforms = { :ios => "9.0", :osx => "10.11" }
+  #s.platforms = { :ios => "9.0"}
+  s.platforms = { :ios => "9.0", :osx => "10.11" }
 
   s.name         = "IKILogger"
   s.version      = "1.0.0"
