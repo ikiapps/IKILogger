@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   #s.platforms = { :ios => "9.0"}
-  s.platforms = { :ios => "9.0", :osx => "10.11" }
+  s.platforms = { :ios => "8.0", :osx => "10.11" }
 
   s.name         = "IKILogger"
   s.version      = "1.0.0"
@@ -16,7 +16,6 @@ DLog is a popular, enhanced debugging format that used Objective-C macros to pri
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
   s.license      = { :type => "MIT", :file => "LICENSE" }
-  # s.license      = { :type => 'MIT' }
 
   s.author             = { "ikiApps LLC" => "ikiApps@ikiApps.com" }
 
