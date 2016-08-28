@@ -112,7 +112,7 @@ public func dLogBlue(message: String?, date: String? = nil, filename: String = #
     logMessageWithColor(LogColor.valuable, message: message, date: date, filename: filename, function: function, line: line)
 }
 
-func dLogPurple(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
+public func dLogPurple(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
     logMessageWithColor(LogColor.toBeReviewed, message: message, date: date, filename: filename, function: function, line: line)
 }
 
@@ -123,14 +123,14 @@ public func dLogGray(message: String?, date: String? = nil, filename: String = #
 #if VERBOSE_DEBUG
     // Verbose debugging has not been implemented yet.
 #else
-    func vLog(message: String, date: String? = nil) {}
-    func vLogRed(message: String, date: String? = nil) {}
-    func vLogOrange(message: String, date: String? = nil) {}
-    func vLogYellow(message: String, date: String? = nil) {}
-    func vLogGreen(message: String, date: String? = nil) {}
-    func vLogBlue(message: String, date: String? = nil) {}
-    func vLogPurple(message: String, date: String? = nil) {}
-    func vLogGray(message: String, date: String? = nil) {}
+    public func vLog(message: String, date: String? = nil) {}
+    public func vLogRed(message: String, date: String? = nil) {}
+    public func vLogOrange(message: String, date: String? = nil) {}
+    public func vLogYellow(message: String, date: String? = nil) {}
+    public func vLogGreen(message: String, date: String? = nil) {}
+    public func vLogBlue(message: String, date: String? = nil) {}
+    public func vLogPurple(message: String, date: String? = nil) {}
+    public func vLogGray(message: String, date: String? = nil) {}
 #endif
 
 // ------------------------------------------------------------
