@@ -196,7 +196,7 @@ private func messageShouldBeLoggedBasedOnDate(dateString: String, colorString: S
 
     let beforeDate = formatter.dateFromString(ikiLogger_suppressBeforeDate)
 
-    if let uwNewDate = newDate, uwBeforeDate = beforeDate {
+    if let uwNewDate = newDate, let uwBeforeDate = beforeDate {
         if uwNewDate.compare(uwBeforeDate) == NSComparisonResult.OrderedDescending {
             printMessage = true
         }
