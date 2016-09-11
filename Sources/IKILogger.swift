@@ -75,6 +75,9 @@ public var ikiLogger_enabled = true
 /// Cut off output that has a logging date before this date. The format of this string is "yyyy-MMM-dd".
 public var ikiLogger_suppressBeforeDate = "2000-Jan-01"
 
+/// A prefix that can be used for filtering output.
+public var ikiLogger_prefix = "ikiApps"
+
 /// Determine whether or not Crashlytics will be used for logging.
 #if CRASHLYTICS
     public var ikiLogger_useCrashlytics = true
@@ -187,14 +190,14 @@ private func logMessageWithColor(color: String,
             #if CRASHLYTICS
                 if ikiLogger_useCrashlytics {
                     if ikiLogger_useColor {
-                        CLSNSLogv("ikiApps \(color) -[%@:%d] %@ - %@", getVaList([(filename as NSString).lastPathComponent, line, function, uwMessage]))
+                        CLSNSLogv("\(ikiLogger_prefix) \(color) -[%@:%d] %@ - %@", getVaList([(filename as NSString).lastPathComponent, line, function, uwMessage]))
                     } else {
                         CLSNSLogv("-[%@:%d] %@ - %@", getVaList([(filename as NSString).lastPathComponent, line, function, uwMessage]))
                     }
                 }
             #else
                 if ikiLogger_useColor {
-                    NSLog("ikiApps \(color) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(uwMessage)")
+                    NSLog("\(ikiLogger_prefix) \(color) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(uwMessage)")
                 } else {
                     NSLog("-[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(uwMessage)")
                 }
