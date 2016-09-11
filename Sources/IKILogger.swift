@@ -30,14 +30,27 @@ import Foundation
 #endif
 
 /**
- This library provides DLog style debugging for Swift using color output support
- from the XcodeColors plugin. See https://github.com/robbiehanson/XcodeColors.
+ This library provides DLog style debugging for Swift, with or without Crashlytics.
+ 
+ IKILogger lets you tag debugging output with colored symbols and keeps the logging
+ from printing to stdout so that it is not seen by end users.
+
+ Dates are added to logging commands to give them context in time. Additionally,
+ logging output can be suppressed by a date cutoff.
+ 
+ IKILogger previously had color output support from the XcodeColors plugin.
+ See https://github.com/robbiehanson/XcodeColors.
+
+ With Xcode 8, plugins are no longer supported. That is the reason for using emoji
+ symbols to represent different color states.
 
  Colored debugging logging enhances logs by adding an extra dimension of
  debugging data that can be quickly discerned without reading. This is especially
- useful for those that associate meanings to colors. In this library, the meaning
- of CRITICAL is assigned to the color red. This color value will always be logged
- and is, therefore, useful for printing NSError occurrences.
+ useful for those that associate meanings to colors. 
+ 
+ In this library, the meaning of CRITICAL is assigned to the color red and the 
+ double exclamation symbol (!!). This color value will always be logged and is, 
+ therefore, useful for printing NSError occurrences.
 
  Output is passed to Crashlytics logging. See
  https://docs.fabric.io/apple/crashlytics/enhanced-reports.html#custom-logs.
@@ -77,6 +90,7 @@ let RESET_FG = "\u{001b}[" + "fg;" // Clear any foreground color.
 let RESET_BG = "\u{001b}[" + "bg;" // Clear any background color.
 let RESET = "\u{001b}[" + ";"  // Clear any foreground or background color.
 
+/// Old colors kept for reference.
 struct LogColor {
     static let critical = "bg220,100,100;" // Messages using this color will always be logged.
     static let important = "bg255,212,120;"
@@ -88,36 +102,55 @@ struct LogColor {
     static let none = "fg0,34,98;"
 }
 
-public func dLog(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
-    logMessageWithColor(LogColor.none, message: message, date: date, filename: filename, function: function, line: line)
+struct LogSymbol {
+    static let critical = "‼️" // Messages using this color will always be logged.
+    static let important = "✴️" // Eight point star.
+    static let highlighted = "💛"
+    static let reviewed = "✅"
+    static let valuable = "💙"
+    static let toBeReviewed = "💜"
+    static let notImportant = "❔"
+    static let none = "⬜️"
 }
 
-public func dLogRed(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
-    logMessageWithColor(LogColor.critical, message: message, date: date, filename: filename, function: function, line: line)
+public func dLog(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
+{
+    logMessageWithColor(color: LogSymbol.none, message: message, date: date, filename: filename, function: function, line: line)
 }
 
-public func dLogOrange(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
-    logMessageWithColor(LogColor.important, message: message, date: date, filename: filename, function: function, line: line)
+public func dLogRed(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
+{
+    logMessageWithColor(color: LogSymbol.critical, message: message, date: date, filename: filename, function: function, line: line)
 }
 
-public func dLogYellow(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
-    logMessageWithColor(LogColor.highlighted, message: message, date: date, filename: filename, function: function, line: line)
+public func dLogOrange(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
+{
+    logMessageWithColor(color: LogSymbol.important, message: message, date: date, filename: filename, function: function, line: line)
 }
 
-public func dLogGreen(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
-    logMessageWithColor(LogColor.reviewed, message: message, date: date, filename: filename, function: function, line: line)
+public func dLogYellow(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
+{
+    logMessageWithColor(color: LogSymbol.highlighted, message: message, date: date, filename: filename, function: function, line: line)
 }
 
-public func dLogBlue(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
-    logMessageWithColor(LogColor.valuable, message: message, date: date, filename: filename, function: function, line: line)
+public func dLogGreen(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
+{
+    logMessageWithColor(color: LogSymbol.reviewed, message: message, date: date, filename: filename, function: function, line: line)
 }
 
-public func dLogPurple(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
-    logMessageWithColor(LogColor.toBeReviewed, message: message, date: date, filename: filename, function: function, line: line)
+public func dLogBlue(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
+{
+    logMessageWithColor(color: LogSymbol.valuable, message: message, date: date, filename: filename, function: function, line: line)
 }
 
-public func dLogGray(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line) {
-    logMessageWithColor(LogColor.notImportant, message: message, date: date, filename: filename, function: function, line: line)
+public func dLogPurple(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
+{
+    logMessageWithColor(color: LogSymbol.toBeReviewed, message: message, date: date, filename: filename, function: function, line: line)
+}
+
+public func dLogGray(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
+{
+    logMessageWithColor(color: LogSymbol.notImportant, message: message, date: date, filename: filename, function: function, line: line)
 }
 
 #if VERBOSE_DEBUG
@@ -145,23 +178,23 @@ private func logMessageWithColor(color: String,
                                  function: String,
                                  line: Int)
 {
-    guard let dateString = date where ikiLogger_enabled else {
+    guard let dateString = date, ikiLogger_enabled else {
         return;
     }
 
-    if messageShouldBeLoggedBasedOnDate(dateString, colorString: color) {
+    if messageShouldBeLoggedBasedOnDate(dateString: dateString, colorString: color) {
         if let uwMessage = message as String? {
             #if CRASHLYTICS
                 if ikiLogger_useCrashlytics {
                     if ikiLogger_useColor {
-                        CLSNSLogv("\(ESCAPE)\(color)-[%@:%d] %@ - %@\(RESET)", getVaList([(filename as NSString).lastPathComponent, line, function, uwMessage]))
+                        CLSNSLogv("ikiApps \(color) -[%@:%d] %@ - %@", getVaList([(filename as NSString).lastPathComponent, line, function, uwMessage]))
                     } else {
                         CLSNSLogv("-[%@:%d] %@ - %@", getVaList([(filename as NSString).lastPathComponent, line, function, uwMessage]))
                     }
                 }
             #else
                 if ikiLogger_useColor {
-                    NSLog("\(ESCAPE)\(color)-[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(uwMessage)\(RESET)")
+                    NSLog("ikiApps \(color) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(uwMessage)")
                 } else {
                     NSLog("-[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(uwMessage)")
                 }
@@ -186,23 +219,21 @@ private func dateComparisonShouldBeIgnored(colorString: String) -> Bool
 /// Log the message if the creation date for the message is after the suppression date and the color is not set for forced logging.
 private func messageShouldBeLoggedBasedOnDate(dateString: String, colorString: String) -> Bool
 {
-    if dateComparisonShouldBeIgnored(colorString) { return true; }
+    if dateComparisonShouldBeIgnored(colorString: colorString) { return true; }
 
-    let formatter = NSDateFormatter()
+    let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MMM-dd"
 
-    let newDate = formatter.dateFromString(dateString)
+    let newDate = formatter.date(from: dateString)
     var printMessage = false
 
-    let beforeDate = formatter.dateFromString(ikiLogger_suppressBeforeDate)
+    let beforeDate = formatter.date(from: ikiLogger_suppressBeforeDate)
 
     if let uwNewDate = newDate, let uwBeforeDate = beforeDate {
-        if uwNewDate.compare(uwBeforeDate) == NSComparisonResult.OrderedDescending {
+        if uwNewDate.compare(uwBeforeDate) == ComparisonResult.orderedDescending {
             printMessage = true
         }
     }
 
     return printMessage;
 }
-
-
