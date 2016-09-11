@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import IKILogger_iOS
 
 class ViewController: UIViewController {
 
@@ -15,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        dLog("Hello from IKILogger!", date: "2016-Aug-13")
+        dLog(message: "Hello from IKILogger!", date: "2016-Aug-13")
     }
 
     override func didReceiveMemoryWarning() {
