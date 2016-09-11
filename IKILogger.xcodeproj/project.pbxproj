@@ -49,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		658FF2781D85CCDB00C76BC5 /* Example_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		65DAD5BC1D6033F900EC9ED0 /* Example_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DAD5BE1D6033FA00EC9ED0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65DAD5C01D6033FA00EC9ED0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -127,11 +128,12 @@
 			isa = PBXGroup;
 			children = (
 				65DAD5BE1D6033FA00EC9ED0 /* AppDelegate.swift */,
-				65DAD5C01D6033FA00EC9ED0 /* ViewController.swift */,
-				65DAD5C21D6033FA00EC9ED0 /* Main.storyboard */,
 				65DAD5C51D6033FA00EC9ED0 /* Assets.xcassets */,
-				65DAD5C71D6033FA00EC9ED0 /* LaunchScreen.storyboard */,
+				658FF2781D85CCDB00C76BC5 /* Example_iOS-Bridging-Header.h */,
 				65DAD5CA1D6033FA00EC9ED0 /* Info.plist */,
+				65DAD5C71D6033FA00EC9ED0 /* LaunchScreen.storyboard */,
+				65DAD5C21D6033FA00EC9ED0 /* Main.storyboard */,
+				65DAD5C01D6033FA00EC9ED0 /* ViewController.swift */,
 			);
 			path = Example_iOS;
 			sourceTree = "<group>";
@@ -357,6 +359,7 @@
 					65DAD5BB1D6033F900EC9ED0 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = S42562X7E4;
+						LastSwiftMigration = 0800;
 					};
 					65DAD5CE1D6033FA00EC9ED0 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -588,6 +591,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ikiApps.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Example_iOS/Example_iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -637,6 +641,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ikiApps.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Example_iOS/Example_iOS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
