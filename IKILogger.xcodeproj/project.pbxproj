@@ -49,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		658FF2781D85CCDB00C76BC5 /* Example_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Example_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		65DAD5BC1D6033F900EC9ED0 /* Example_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65DAD5BE1D6033FA00EC9ED0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65DAD5C01D6033FA00EC9ED0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -127,11 +128,12 @@
 			isa = PBXGroup;
 			children = (
 				65DAD5BE1D6033FA00EC9ED0 /* AppDelegate.swift */,
-				65DAD5C01D6033FA00EC9ED0 /* ViewController.swift */,
-				65DAD5C21D6033FA00EC9ED0 /* Main.storyboard */,
 				65DAD5C51D6033FA00EC9ED0 /* Assets.xcassets */,
-				65DAD5C71D6033FA00EC9ED0 /* LaunchScreen.storyboard */,
+				658FF2781D85CCDB00C76BC5 /* Example_iOS-Bridging-Header.h */,
 				65DAD5CA1D6033FA00EC9ED0 /* Info.plist */,
+				65DAD5C71D6033FA00EC9ED0 /* LaunchScreen.storyboard */,
+				65DAD5C21D6033FA00EC9ED0 /* Main.storyboard */,
+				65DAD5C01D6033FA00EC9ED0 /* ViewController.swift */,
 			);
 			path = Example_iOS;
 			sourceTree = "<group>";
@@ -356,6 +358,8 @@
 				TargetAttributes = {
 					65DAD5BB1D6033F900EC9ED0 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = S42562X7E4;
+						LastSwiftMigration = 0800;
 					};
 					65DAD5CE1D6033FA00EC9ED0 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -559,6 +563,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = S42562X7E4;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -586,7 +591,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ikiApps.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Example_iOS/Example_iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -613,6 +620,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = S42562X7E4;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -633,6 +641,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ikiApps.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Example_iOS/Example_iOS-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -683,6 +693,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ikiApps.Example-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example_iOS.app/Example_iOS";
 			};
 			name = Debug;
@@ -726,6 +737,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ikiApps.Example-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example_iOS.app/Example_iOS";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -736,6 +748,7 @@
 			buildSettings = {
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -744,6 +757,7 @@
 			buildSettings = {
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -801,6 +815,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -853,6 +868,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -906,6 +922,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -947,6 +964,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ikiApps.IKILogger-iOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1006,6 +1024,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1058,6 +1077,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1110,6 +1130,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1152,6 +1173,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ikiApps.IKILogger-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
