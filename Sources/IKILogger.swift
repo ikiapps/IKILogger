@@ -118,42 +118,42 @@ struct LogSymbol {
 
 public func dLog(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
 {
-    logMessageWithColor(color: LogSymbol.none, message: message, date: date, filename: filename, function: function, line: line)
+    logMessageWithColor(LogSymbol.none, message: message, date: date, filename: filename, function: function, line: line)
 }
 
 public func dLogRed(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
 {
-    logMessageWithColor(color: LogSymbol.critical, message: message, date: date, filename: filename, function: function, line: line)
+    logMessageWithColor(LogSymbol.critical, message: message, date: date, filename: filename, function: function, line: line)
 }
 
 public func dLogOrange(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
 {
-    logMessageWithColor(color: LogSymbol.important, message: message, date: date, filename: filename, function: function, line: line)
+    logMessageWithColor(LogSymbol.important, message: message, date: date, filename: filename, function: function, line: line)
 }
 
 public func dLogYellow(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
 {
-    logMessageWithColor(color: LogSymbol.highlighted, message: message, date: date, filename: filename, function: function, line: line)
+    logMessageWithColor(LogSymbol.highlighted, message: message, date: date, filename: filename, function: function, line: line)
 }
 
 public func dLogGreen(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
 {
-    logMessageWithColor(color: LogSymbol.reviewed, message: message, date: date, filename: filename, function: function, line: line)
+    logMessageWithColor(LogSymbol.reviewed, message: message, date: date, filename: filename, function: function, line: line)
 }
 
 public func dLogBlue(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
 {
-    logMessageWithColor(color: LogSymbol.valuable, message: message, date: date, filename: filename, function: function, line: line)
+    logMessageWithColor(LogSymbol.valuable, message: message, date: date, filename: filename, function: function, line: line)
 }
 
 public func dLogPurple(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
 {
-    logMessageWithColor(color: LogSymbol.toBeReviewed, message: message, date: date, filename: filename, function: function, line: line)
+    logMessageWithColor(LogSymbol.toBeReviewed, message: message, date: date, filename: filename, function: function, line: line)
 }
 
 public func dLogGray(message: String?, date: String? = nil, filename: String = #file, function: String = #function, line: Int = #line)
 {
-    logMessageWithColor(color: LogSymbol.notImportant, message: message, date: date, filename: filename, function: function, line: line)
+    logMessageWithColor(LogSymbol.notImportant, message: message, date: date, filename: filename, function: function, line: line)
 }
 
 #if VERBOSE_DEBUG
@@ -181,11 +181,11 @@ private func logMessageWithColor(color: String,
                                  function: String,
                                  line: Int)
 {
-    guard let dateString = date, ikiLogger_enabled else {
+    guard let dateString = date where ikiLogger_enabled else {
         return;
     }
 
-    if messageShouldBeLoggedBasedOnDate(dateString: dateString, colorString: color) {
+    if messageShouldBeLoggedBasedOnDate(dateString, colorString: color) {
         if let uwMessage = message as String? {
             #if CRASHLYTICS
                 if ikiLogger_useCrashlytics {
@@ -222,18 +222,18 @@ private func dateComparisonShouldBeIgnored(colorString: String) -> Bool
 /// Log the message if the creation date for the message is after the suppression date and the color is not set for forced logging.
 private func messageShouldBeLoggedBasedOnDate(dateString: String, colorString: String) -> Bool
 {
-    if dateComparisonShouldBeIgnored(colorString: colorString) { return true; }
+    if dateComparisonShouldBeIgnored(colorString) { return true; }
 
-    let formatter = DateFormatter()
+    let formatter = NSDateFormatter()
     formatter.dateFormat = "yyyy-MMM-dd"
 
-    let newDate = formatter.date(from: dateString)
+    let newDate = formatter.dateFromString(dateString)
     var printMessage = false
 
-    let beforeDate = formatter.date(from: ikiLogger_suppressBeforeDate)
+    let beforeDate = formatter.dateFromString(ikiLogger_suppressBeforeDate)
 
     if let uwNewDate = newDate, let uwBeforeDate = beforeDate {
-        if uwNewDate.compare(uwBeforeDate) == ComparisonResult.orderedDescending {
+        if uwNewDate.compare(uwBeforeDate) == NSComparisonResult.OrderedDescending {
             printMessage = true
         }
     }
