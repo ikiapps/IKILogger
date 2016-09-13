@@ -6,6 +6,8 @@ Logging is prevented from going to STDOUT, for efficiency and cleanliness.
 
 Output can be supressed using a date cutoff, for improving focus.
 
+A prefix is added to messages and this can be filtered on, for eliminating Xcode 8 GM spam.
+
 Written in Swift 2.3 and compatible with Xcode 7 and 8.
 
 ## Installation
