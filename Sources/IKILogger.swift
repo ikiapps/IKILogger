@@ -1,7 +1,7 @@
 //
 //  IKILogger.swift
 //
-//  version 1.0.0
+//  version 1.1.1
 //
 //  The MIT License (MIT)
 //  Copyright (c) 2016 ikiApps LLC.
@@ -87,23 +87,6 @@ public var ikiLogger_prefix = "ikiApps"
 
 /// Determine whether or not to use color output.
 public var ikiLogger_useColor = false
-
-let ESCAPE = "\u{001b}["
-let RESET_FG = "\u{001b}[" + "fg;" // Clear any foreground color.
-let RESET_BG = "\u{001b}[" + "bg;" // Clear any background color.
-let RESET = "\u{001b}[" + ";"  // Clear any foreground or background color.
-
-/// Old colors kept for reference.
-struct LogColor {
-    static let critical = "bg220,100,100;" // Messages using this color will always be logged.
-    static let important = "bg255,212,120;"
-    static let highlighted = "bg255,252,120;"
-    static let reviewed = "bg213,251,120;"
-    static let valuable = "bg118,214,255;"
-    static let toBeReviewed = "bg215,131,255;"
-    static let notImportant = "bg192,192,192;"
-    static let none = "fg0,34,98;"
-}
 
 struct LogSymbol {
     static let critical = "‼️" // Messages using this color will always be logged.
@@ -212,7 +195,7 @@ private func dateComparisonShouldBeIgnored(colorString: String) -> Bool
     var ignoreDateComparison = false
 
     // Ignore date comparisons if the color level is CRITICAL.
-    if colorString == LogColor.critical {
+    if colorString == LogSymbol.critical {
         ignoreDateComparison = true
     }
 
@@ -220,13 +203,13 @@ private func dateComparisonShouldBeIgnored(colorString: String) -> Bool
 }
 
 /// Log the message if the creation date for the message is after the suppression date and the color is not set for forced logging.
-private func messageShouldBeLoggedBasedOnDate(dateString: String, colorString: String) -> Bool
+private func messageShouldBeLoggedBasedOnDate(dateString: String,
+                                              colorString: String) -> Bool
 {
     if dateComparisonShouldBeIgnored(colorString) { return true; }
 
     let formatter = NSDateFormatter()
     formatter.dateFormat = "yyyy-MMM-dd"
-
     let newDate = formatter.dateFromString(dateString)
     var printMessage = false
 
