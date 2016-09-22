@@ -8,19 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController
+{
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
 
-        dLog(message: "Hello from IKILogger!", date: "2016-Aug-13")
+        dLogGray("Hello", date: "2016-Sep-22")
+        dLogRed("World", date: "2016-Sep-22")
+        dLog("", date: "2016-Sep-22")
+
+        dLogOrange("A summer river being crossed", date: "2016-Sep-22")
+        dLogYellow("how pleasing", date: "2016-Sep-22")
+        dLogPurple("with sandals in my hands!", date: "2016-Sep-22")
+        dLog("", date: "2016-Sep-22")
+
+        dLogGreen("An old silent pond...", date: "2016-Sep-22")
+        dLogBlue("A frog jumps into the pond,", date: "2016-Sep-22")
+        dLogPurple("splash! Silence again.", date: "2016-Sep-22")
+        dLog("", date: "2016-Sep-22")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
-
