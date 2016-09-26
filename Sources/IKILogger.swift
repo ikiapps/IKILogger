@@ -1,7 +1,7 @@
 //
 //  IKILogger.swift
 //
-//  version 1.1.1
+//  version 1.1.2
 //
 //  The MIT License (MIT)
 //  Copyright (c) 2016 ikiApps LLC.

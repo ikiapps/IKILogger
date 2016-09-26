@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.platforms = { :ios => "8.0", :osx => "10.11" }
 
   s.name         = "IKILogger"
-  s.version      = "1.1.0"
+  s.version      = "1.1.2"
   s.summary      = "Colorful, detailed logging output in Swift with support for Crashlytics logging."
 
   s.description  = <<-DESC
