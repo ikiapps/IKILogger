@@ -175,14 +175,14 @@ private func logMessageWithColor(color: String,
                     if ikiLogger_useColor {
                         CLSNSLogv("\(ikiLogger_prefix) \(color) -[%@:%d] %@ - %@", getVaList([(filename as NSString).lastPathComponent, line, function, uwMessage]))
                     } else {
-                        CLSNSLogv("-[%@:%d] %@ - %@", getVaList([(filename as NSString).lastPathComponent, line, function, uwMessage]))
+                        CLSNSLogv("\(ikiLogger_prefix) -[%@:%d] %@ - %@", getVaList([(filename as NSString).lastPathComponent, line, function, uwMessage]))
                     }
                 }
             #else
                 if ikiLogger_useColor {
                     NSLog("\(ikiLogger_prefix) \(color) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(uwMessage)")
                 } else {
-                    NSLog("-[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(uwMessage)")
+                    NSLog("\(ikiLogger_prefix) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(uwMessage)")
                 }
             #endif
         }
