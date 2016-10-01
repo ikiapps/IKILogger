@@ -14,8 +14,8 @@ class AppDelegate: UIResponder,
 {
     var window: UIWindow?
 
-    func application(application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool
     {
         ikiLogger_useColor = true
         return true;
