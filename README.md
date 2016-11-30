@@ -8,7 +8,11 @@ Output can be supressed using a date cutoff, for improving focus.
 
 A prefix is added to messages and this can be filtered on, for eliminating Xcode 8 spam.
 
-Written in Swift 2.3 and compatible with Xcode 7 and 8.
+## Versions
+
+Version 1.x.x is for Swift 2.3 and compatible with Xcode 7 and 8.
+
+Version 2.x.x is for Swift 3 and Xcode 8.
 
 ## Installation
 
