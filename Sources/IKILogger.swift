@@ -31,13 +31,13 @@ import Foundation
 
 /**
  This library provides DLog style debugging for Swift, with or without Crashlytics.
- 
+
  IKILogger lets you tag debugging output with colored symbols and keeps the logging
  from printing to stdout so that it is not seen by end users.
 
  Dates are added to logging commands to give them context in time. Additionally,
  logging output can be suppressed by a date cutoff.
- 
+
  IKILogger previously had color output support from the XcodeColors plugin.
  See https://github.com/robbiehanson/XcodeColors.
 
@@ -46,10 +46,10 @@ import Foundation
 
  Colored debugging logging enhances logs by adding an extra dimension of
  debugging data that can be quickly discerned without reading. This is especially
- useful for those that associate meanings to colors. 
- 
- In this library, the meaning of CRITICAL is assigned to the color red and the 
- double exclamation symbol (!!). This color value will always be logged and is, 
+ useful for those that associate meanings to colors.
+
+ In this library, the meaning of CRITICAL is assigned to the color red and the
+ double exclamation symbol (!!). This color value will always be logged and is,
  therefore, useful for printing NSError occurrences.
 
  Output is passed to Crashlytics logging. See
@@ -80,9 +80,9 @@ public var ikiLogger_prefix = "ikiApps"
 
 /// Determine whether or not Crashlytics will be used for logging.
 #if CRASHLYTICS
-    public var ikiLogger_useCrashlytics = true
+    var ikiLogger_useCrashlytics = true
 #else
-    public var ikiLogger_useCrashlytics = false
+    var ikiLogger_useCrashlytics = false
 #endif
 
 /// Determine whether or not to use color output.
@@ -168,23 +168,14 @@ private func logMessageWithColor(color: String,
         return;
     }
 
-    if messageShouldBeLoggedBasedOnDate(dateString: dateString, colorString: color) {
+    if messageShouldBeLoggedBasedOnDate(dateString: dateString,
+                                        colorString: color) {
         if let uwMessage = message as String? {
-            #if CRASHLYTICS
-                if ikiLogger_useCrashlytics {
-                    if ikiLogger_useColor {
-                        CLSNSLogv("\(ikiLogger_prefix) \(color) -[%@:%d] %@ - %@", getVaList([(filename as NSString).lastPathComponent, line, function, uwMessage]))
-                    } else {
-                        CLSNSLogv("\(ikiLogger_prefix) -[%@:%d] %@ - %@", getVaList([(filename as NSString).lastPathComponent, line, function, uwMessage]))
-                    }
-                }
-            #else
-                if ikiLogger_useColor {
-                    NSLog("\(ikiLogger_prefix) \(color) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(uwMessage)")
-                } else {
-                    NSLog("\(ikiLogger_prefix) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(uwMessage)")
-                }
-            #endif
+            logMultilineMessage(color: color,
+                                filename: filename,
+                                line: line,
+                                function: function,
+                                message: uwMessage)
         }
     }
 }
@@ -202,7 +193,8 @@ private func dateComparisonShouldBeIgnored(colorString: String) -> Bool
     return ignoreDateComparison;
 }
 
-/// Log the message if the creation date for the message is after the suppression date and the color is not set for forced logging.
+/// Log the message if the creation date for the message is after the suppression date
+/// and the color is not set for forced logging.
 private func messageShouldBeLoggedBasedOnDate(dateString: String,
                                               colorString: String) -> Bool
 {
@@ -222,4 +214,39 @@ private func messageShouldBeLoggedBasedOnDate(dateString: String,
     }
 
     return printMessage;
+}
+
+/// Log a message that may contain multiple lines.
+/// Use Crashlytics if it is defined.
+private func logMultilineMessage(color: String,
+                                 filename: String,
+                                 line: Int,
+                                 function: String,
+                                 message: String)
+{
+    let splitMessage = message.components(separatedBy: "\n")
+
+    for textLine in splitMessage {
+        #if CRASHLYTICS
+            if ikiLogger_useColor {
+                CLSNSLogv("\(ikiLogger_prefix) \(color) -[%@:%d] %@ - %@",
+                    getVaList([(filename as NSString).lastPathComponent,
+                               line,
+                               function,
+                               textLine]))
+            } else {
+                CLSNSLogv("\(ikiLogger_prefix) -[%@:%d] %@ - %@",
+                    getVaList([(filename as NSString).lastPathComponent,
+                               line,
+                               function,
+                               textLine]))
+            }
+        #else
+            if ikiLogger_useColor {
+                NSLog("\(ikiLogger_prefix) \(color) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(textLine)")
+            } else {
+                NSLog("\(ikiLogger_prefix) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(textLine)")
+            }
+        #endif
+    }
 }
