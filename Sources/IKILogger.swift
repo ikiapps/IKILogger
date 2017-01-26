@@ -1,10 +1,10 @@
 //
 //  IKILogger.swift
 //
-//  version 2.0.1
+//  version 2.0.2
 //
 //  The MIT License (MIT)
-//  Copyright (c) 2016 ikiApps LLC.
+//  Copyright (c) 2017 ikiApps LLC.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to
@@ -228,25 +228,45 @@ private func logMultilineMessage(color: String,
 
     for textLine in splitMessage {
         #if CRASHLYTICS
-            if ikiLogger_useColor {
-                CLSNSLogv("\(ikiLogger_prefix) \(color) -[%@:%d] %@ - %@",
-                    getVaList([(filename as NSString).lastPathComponent,
-                               line,
-                               function,
-                               textLine]))
-            } else {
-                CLSNSLogv("\(ikiLogger_prefix) -[%@:%d] %@ - %@",
-                    getVaList([(filename as NSString).lastPathComponent,
-                               line,
-                               function,
-                               textLine]))
-            }
+            #if DEBUG
+                if ikiLogger_useColor {
+                    CLSNSLogv("\(ikiLogger_prefix) \(color) -[%@:%d] %@ - %@",
+                        getVaList([(filename as NSString).lastPathComponent,
+                                   line,
+                                   function,
+                                   textLine]))
+                } else {
+                    CLSNSLogv("\(ikiLogger_prefix) -[%@:%d] %@ - %@",
+                        getVaList([(filename as NSString).lastPathComponent,
+                                   line,
+                                   function,
+                                   textLine]))
+                }
+            #else
+                if ikiLogger_useColor {
+                    CLSLog("\(ikiLogger_prefix) \(color) -[%@:%d] %@ - %@",
+                        getVaList([(filename as NSString).lastPathComponent,
+                                   line,
+                                   function,
+                                   textLine]))
+                } else {
+                    CLSLog("\(ikiLogger_prefix) -[%@:%d] %@ - %@",
+                        getVaList([(filename as NSString).lastPathComponent,
+                                   line,
+                                   function,
+                                   textLine]))
+                }
+            #endif
         #else
-            if ikiLogger_useColor {
-                NSLog("\(ikiLogger_prefix) \(color) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(textLine)")
-            } else {
-                NSLog("\(ikiLogger_prefix) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(textLine)")
-            }
+            #if DEBUG
+                if ikiLogger_useColor {
+                    NSLog("\(ikiLogger_prefix) \(color) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(textLine)")
+                } else {
+                    NSLog("\(ikiLogger_prefix) -[\((filename as NSString).lastPathComponent):\(line)] \(function) - \(textLine)")
+                }
+            #else
+                // No message will be printed unless DEBUG is defined in the building settings under Other Swift Flags.
+            #endif
         #endif
     }
 }
