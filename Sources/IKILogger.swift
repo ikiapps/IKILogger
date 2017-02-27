@@ -1,7 +1,7 @@
 //
 //  IKILogger.swift
 //
-//  version 2.0.2
+//  version 2.0.3
 //
 //  The MIT License (MIT)
 //  Copyright (c) 2017 ikiApps LLC.
@@ -244,13 +244,13 @@ private func logMultilineMessage(color: String,
                 }
             #else
                 if ikiLogger_useColor {
-                    CLSLog("\(ikiLogger_prefix) \(color) -[%@:%d] %@ - %@",
+                    CLSLogv("\(ikiLogger_prefix) \(color) -[%@:%d] %@ - %@",
                         getVaList([(filename as NSString).lastPathComponent,
                                    line,
                                    function,
                                    textLine]))
                 } else {
-                    CLSLog("\(ikiLogger_prefix) -[%@:%d] %@ - %@",
+                    CLSLogv("\(ikiLogger_prefix) -[%@:%d] %@ - %@",
                         getVaList([(filename as NSString).lastPathComponent,
                                    line,
                                    function,
